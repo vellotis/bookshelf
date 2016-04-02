@@ -13,7 +13,6 @@ module.exports = function (Bookshelf) {
     // If virtual properties have been defined they will be created
     // as simple getters on the model.
     constructor: function (attributes, options) {
-      proto.constructor.apply(this, arguments);
       var virtuals = this.virtuals;
       if (_.isObject(virtuals)) {
         for (var virtualName in virtuals) {
@@ -31,6 +30,7 @@ module.exports = function (Bookshelf) {
           });
         }
       }
+      proto.constructor.apply(this, arguments);
     },
 
     // Passing `{virtuals: true}` or `{virtuals: false}` in the `options`
