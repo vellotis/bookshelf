@@ -977,7 +977,7 @@ const BookshelfModel = ModelBase.extend({
       return this.triggerThen((method === 'insert' ? 'creating saving' : 'updating saving'), this, attrs, options)
       .bind(this)
       .then(function() {
-        return sync[options.method](method === 'update' && options.patch ? attrs : this.attributes);
+        return sync[options.method](method === 'update' && options.patch ? this.changed : this.attributes);
       })
       .then(function(resp) {
 
